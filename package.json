@@ -1,0 +1,36 @@
+{
+    "name": "yolo-octo-dangerzone",
+    "version": "0.1.0",
+    "description": "Project for testing usage of ActorJs",
+    "main": "index.js",
+    "scripts": {
+        "auto-style": "jscs -e -x src/*.es6 src/lib/*.es6 src/test/**/*.es6 #auto-style-not-working",
+        "lint": "eslint src/*.es6 src/lib/*.es6 src/test/**/*.es6",
+        "build": "npm run clean && babel src --source-maps inline --out-dir app && npm run resources && npm run vendor",
+        "check-style": "jscs -e src/*.es6 src/lib/*.es6 src/test/**/*.es6",
+        "unit-test": "./node_modules/.bin/mocha app/test/unit --reporter spec",
+        "vendor": "cp -r vendor app/vendor",
+        "resources": "cp -r src/*.html src/*.json src/css app",
+        "clean": "rm -rf app/*",
+        "test": "npm run lint && npm run build && npm run unit-test && npm run check-style",
+
+        "app": "./bin/Electron.app/Contents/MacOS/Electron ./app/",
+
+        "dev": "nodemon --ignore 'app/**/*' --ignore 'build/**/*' -e html,js,es6,css --exec 'npm test && npm run app'"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JediMindtrick/yolo-octo-dangerzone.git"
+    },
+    "author": "JediMindtrick",
+    "license": "MIT",
+    "devDependencies": {
+        "chai": "^2.2.0",
+        "mocha": "^2.2.4",
+        "babel-eslint": "^3.1.9"
+    },
+    "bugs": {
+        "url": "https://github.com/JediMindtrick/yolo-octo-dangerzone/issues"
+    },
+    "homepage": "https://github.com/JediMindtrick/yolo-octo-dangerzone"
+}
